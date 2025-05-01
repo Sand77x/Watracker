@@ -1,0 +1,23 @@
+{
+  "name": "water-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "bin": {
+    "watracker": "./index.js"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "conf": "^13.1.0",
+    "dayjs": "^1.11.13",
+    "minimist": "^1.2.8"
+  }
+}
