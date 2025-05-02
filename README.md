@@ -42,8 +42,3 @@ watracker set cap=12           # Set cap to 12 cups
 watracker set scale=1.25       # Each cup adds 1.25 progress
 watracker set rows=3           # Show data for 3 days
 ```
-
-#### Todo
-- Add help page
-- Make executable or npm package
-- Find out how to do ^^ (urgent)
