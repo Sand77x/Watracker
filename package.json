@@ -1,5 +1,5 @@
 {
-  "name": "water-cli",
+  "name": "Watracker",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -11,13 +11,10 @@
   "license": "ISC",
   "description": "",
   "type": "module",
-  "bin": {
-    "watracker": "./index.js"
-  },
   "dependencies": {
-    "chalk": "^5.4.1",
     "conf": "^13.1.0",
     "dayjs": "^1.11.13",
-    "minimist": "^1.2.8"
+    "minimist": "^1.2.8",
+    "yoctocolors": "^2.1.1"
   }
 }
