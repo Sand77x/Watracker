@@ -1,19 +1,47 @@
-# Track you water intake per day with this simple CLI tool! 💧
+# 💧 Water Tracker CLI — Stay Hydrated!
+Track your daily water intake from the terminal. Made with Node and has some customizability.  
+For myself, a chronic dehydrate.  
 
-## For myself, a chronic dehydrate. Made using Node with water-tracking features and some customizability.  
+<img src="https://github.com/user-attachments/assets/cc095adf-37ed-44ef-9064-fa8b89e70ece" width="800">
 
-### Run using `npm start`, add args such as:
-- `d` or `drink`: you drank a cup of water!
-- `u` or `undrink`: you undrank a cup of water!
-- `s` or `set`: set configuration options  
-  - `goal`: how much cups of water you want to drink per day  
-  - `cap`: maximum amount of water you want to track per day  
-  - `scale`: how much progress each cup of water adds  
-  - `rows`: how many days (including today) to show
-  - `Ex: npm start set goal=8`  
+## Install  
+```bash
+npm install watracker
+```
 
-### Screenshot
-![image](https://github.com/user-attachments/assets/e6b5b2d2-0a38-4718-a1c9-816128032b3b)
+## Usage
+
+```bash
+watracker [command] [options]
+```
+Note: I recommend aliasing it to 'wat' or something.
+
+
+## Commands
+
+| Command     | Description                     |
+|-------------|---------------------------------|
+| `d`, `drink`     | Log a cup of water              |
+| `u`, `undrink`   | Remove a cup from today         |
+| `s`, `set`       | Set configuration options       |
+
+## Config Options (for `set`)
+
+- `goal` – daily goal (e.g. `goal=8`)
+- `cap` – max cups to track (e.g. `cap=12`)
+- `scale` – how much each cup adds (e.g. `scale=4`)
+- `rows` – how many days to show (e.g. `rows=3`)
+
+## Examples
+
+```bash
+watracker d                    # You drank a cup
+watracker u                    # You undrank a cup
+watracker set goal=8           # Set goal to 8 cups
+watracker set cap=12           # Set cap to 12 cups
+watracker set scale=1.25       # Each cup adds 1.25 progress
+watracker set rows=3           # Show data for 3 days
+```
 
 #### Todo
 - Add help page

@@ -1,20 +1,22 @@
 {
-  "name": "Watracker",
+  "name": "watracker",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["water", "intake", "CLI"],
+  "author": "sand77x",
   "license": "ISC",
-  "description": "",
+  "description": "Track your daily water intake from the terminal.",
   "type": "module",
   "dependencies": {
     "conf": "^13.1.0",
     "dayjs": "^1.11.13",
     "minimist": "^1.2.8",
     "yoctocolors": "^2.1.1"
+  },
+  "bin": {
+      "watracker": "./index.js"
   }
 }

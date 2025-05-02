@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import minimist from 'minimist';
 import { syncHistory, printMain, printLastDrink, printEncouragement, printStats, printNewLine } from './print.js';
 import config from './config.js';
