@@ -19,17 +19,22 @@ function main() {
     } else if (subcommand === 's' || subcommand === 'set') {
         const [k, v] = setString.split("=");
         if (['goal', 'max', 'rows', 'scale'].includes(k) && Number.isInteger(Number(v))) {
+            if ((k === 'goal' && v > config.get('max')) || (k === 'max' && v < config.get('goal'))) {
+                console.log(`Goal must be less than max.`);
+                return;
+            }
+
             try {
                 config.set(k, Number(v));
             } catch (err) {
                 console.log(`${err}`);
-                return
+                return;
             }
 
             console.log(`Config updated!`);
         }
 
-        return
+        return;
     }
 
     const cfg = config.store;
