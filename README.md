@@ -28,7 +28,7 @@ Note: I recommend aliasing it to 'wat' or something.
 ## Config Options (for `set`)
 
 - `goal` – daily goal (e.g. `goal=8`)
-- `cap` – max cups to track (e.g. `cap=12`)
+- `max` – how many cups to show full bar (e.g. `max=12`)
 - `scale` – how much each cup adds (e.g. `scale=4`)
 - `rows` – how many days to show (e.g. `rows=3`)
 
@@ -38,7 +38,7 @@ Note: I recommend aliasing it to 'wat' or something.
 watracker d                    # You drank a cup
 watracker u                    # You undrank a cup
 watracker set goal=8           # Set goal to 8 cups
-watracker set cap=12           # Set cap to 12 cups
+watracker set max=12           # Set max to 12 cups
 watracker set scale=1.25       # Each cup adds 1.25 progress
 watracker set rows=3           # Show data for 3 days
 ```
