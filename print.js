@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
 import messages from './encouragement.js';
-import { red, white, yellow, blue, green } from 'yoctocolors';
+import { red, white, yellow, green, cyan } from 'yoctocolors';
 import { getDaysApart, TODAY } from './utils.js'
 
-const colors = [red, white, yellow, blue, green];
+const colors = [red, white, yellow, cyan, green];
 
 function logWaterLevel(cfg, cups, dateLabel, showProgress) {
     const cappedCups = Math.min(cfg.max, cups);
@@ -82,17 +82,6 @@ export function printLastDrink(lastDrink) {
     }
 }
 
-export function printStreak(cfg) {
-    let cnt = 0;
-    for (let day of cfg.history) {
-        if (day.cups >= cfg.goal) {
-            cnt++;
-        } else { break; }
-    }
-
-    console.log(`Streak: ${cnt}`)
-}
-
 export function printEncouragement(cfg) {
     const cups = cfg.history[0].cups;
     const breakpoint = Math.ceil(cfg.goal / 3);
@@ -118,4 +107,34 @@ export function printEncouragement(cfg) {
 
     let randomIdx = Math.floor(Math.random() * s.length);
     console.log(color(s[randomIdx]));
+}
+
+export function printStats(cfg) {
+    let sum = 0;
+    let streak = 0;
+    let streakOver = false;
+    for (let record of cfg.history) {
+        if (getDaysApart(TODAY, record.when) < 7) {
+            sum += record.cups;
+        }
+
+        if (!streakOver && record.cups >= cfg.goal) {
+            streak++;
+        } else {
+            streakOver = true;
+        }
+    }
+
+    const avg = (sum / 7).toFixed(2);
+    const streakText = cyan(`🌊 ${streak} day streak!`);
+
+    console.log(`Avg Cups/day: ${avg}`);
+
+    if (streak > 0) {
+        console.log(streakText)
+    }
+}
+
+export function printNewLine() {
+    console.log('');
 }

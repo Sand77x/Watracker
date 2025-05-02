@@ -1,5 +1,5 @@
 import minimist from 'minimist';
-import { syncHistory, printMain, printLastDrink, printStreak, printEncouragement } from './print.js';
+import { syncHistory, printMain, printLastDrink, printEncouragement, printStats, printNewLine } from './print.js';
 import config from './config.js';
 
 function main() {
@@ -41,8 +41,9 @@ function main() {
 
     printMain(cfg);
     printEncouragement(cfg);
+    printNewLine();
     printLastDrink(cfg.lastDrink);
-    printStreak(cfg);
+    printStats(cfg);
 }
 
 main();
