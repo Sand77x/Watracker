@@ -1,11 +1,15 @@
 {
   "name": "watracker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": ["water", "intake", "CLI"],
+  "keywords": [
+    "water",
+    "intake",
+    "CLI"
+  ],
   "author": "sand77x",
   "license": "ISC",
   "description": "Track your daily water intake from the terminal.",
@@ -17,6 +21,6 @@
     "yoctocolors": "^2.1.1"
   },
   "bin": {
-      "watracker": "./index.js"
+    "watracker": "./index.js"
   }
 }
