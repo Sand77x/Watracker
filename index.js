@@ -1,6 +1,7 @@
 import minimist from 'minimist';
 import { syncHistory, printMain, printLastDrink, printEncouragement, printStats, printNewLine } from './print.js';
 import config from './config.js';
+import helpMsg from './help.js';
 
 function main() {
     const history = syncHistory(config);
@@ -34,6 +35,9 @@ function main() {
             console.log(`Config updated!`);
         }
 
+        return;
+    } else if (subcommand === 'h' || subcommand === 'help') {
+        console.log(helpMsg);
         return;
     }
 
