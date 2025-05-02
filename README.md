@@ -6,7 +6,7 @@ For myself, a chronic dehydrate.
 
 ## Install  
 ```bash
-npm install watracker
+npm install -g watracker
 ```
 
 ## Usage
