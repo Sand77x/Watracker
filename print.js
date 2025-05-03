@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import messages from './encouragement.js';
-import { red, white, yellow, green, cyan } from 'yoctocolors';
+import { red, white, yellow, green, cyan, blue, gray } from 'yoctocolors';
 import { getDaysApart, TODAY } from './utils.js'
 
 const colors = [red, white, yellow, cyan, green];
@@ -36,11 +36,15 @@ export function syncHistory(config) {
     // add new day to config if not yet done
     const history = config.get('history');
     if (!history[0] || getDaysApart(history[0].date, TODAY) != 0) {
+        if (!history[0] || history[0].cups < config.get('goal')) {
+            config.set('streak', 0);
+        }
+
         const newEntry = {
             cups: 0,
             date: TODAY.toISOString()
         };
-        config.set('history', [newEntry, ...history].slice(0, 10));
+        config.set('history', [newEntry, ...history].slice(0, 20));
     }
 
     return config.get('history');
@@ -111,27 +115,21 @@ export function printEncouragement(cfg) {
 
 export function printStats(cfg) {
     let sum = 0;
-    let streak = 0;
-    let streakOver = false;
     for (let record of cfg.history) {
         if (getDaysApart(TODAY, record.when) < 7) {
             sum += record.cups;
         }
-
-        if (!streakOver && record.cups >= cfg.goal) {
-            streak++;
-        } else {
-            streakOver = true;
-        }
     }
-
     const avg = (sum / 7).toFixed(2);
-    const streakText = cyan(`🌊 ${streak} day streak!`);
+    console.log(`Cups this week: ${sum} (${avg}/day)`);
 
-    console.log(`Avg Cups/day: ${avg}`);
-
-    if (streak > 0) {
-        console.log(streakText)
+    if (cfg.streak > 0) {
+        const streakText = `🌊 ${cfg.streak} day streak!`;
+        if (cfg.history[0].cups >= cfg.goal) {
+            console.log(blue(streakText));
+        } else {
+            console.log(gray(streakText));
+        }
     }
 }
 

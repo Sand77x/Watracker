@@ -12,12 +12,24 @@ function main() {
     const subcommand = args._[0];
     const setString = args._[1];
 
+    const today = history[0];
+
     if (subcommand === 'd' || subcommand === 'drink') {
-        history[0].cups = history[0].cups + 1;
+        today.cups = today.cups + 1;
+
+        if (today.cups == config.get('goal')) {
+            config.set('streak', config.get('streak') + 1);
+        }
+
         config.set('history', history);
         config.set('lastDrink', (new Date()).toISOString());
     } else if (subcommand === 'u' || subcommand === 'undrink') {
-        history[0].cups = Math.max(history[0].cups - 1, 0);
+        today.cups = Math.max(today.cups - 1, 0);
+
+        if (today.cups == config.get('goal') - 1) {
+            config.set('streak', config.get('streak') - 1);
+        }
+
         config.set('history', history);
     } else if (subcommand === 's' || subcommand === 'set') {
         const [k, v] = setString.split("=");
