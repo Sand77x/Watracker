@@ -9,6 +9,7 @@ export default new Conf({
         rows: { type: 'number', minimum: 1, maximum: 20, default: 4 },
         lastDrink: { type: 'string', default: 'never' },
         streak: { type: 'number', default: 0 },
+        historyCount: { type: 'number', default: 20 },
         history: {
             type: "array", default:
                 [{

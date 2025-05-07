@@ -44,7 +44,7 @@ export function syncHistory(config) {
             cups: 0,
             date: TODAY.toISOString()
         };
-        config.set('history', [newEntry, ...history].slice(0, 20));
+        config.set('history', [newEntry, ...history].slice(0, config.get('historyCount')));
     }
 
     return config.get('history');
@@ -62,6 +62,8 @@ export function printMain(cfg) {
 
     for (let record of cfg.history) {
         const offset = getDaysApart(record.date, TODAY);
+
+        if (offset > cfg.rows - 1) break;
         levelsToPrint[offset].cups = record.cups;
     }
 
