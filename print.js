@@ -35,14 +35,14 @@ function logWaterLevel(cfg, cups, dateLabel, showProgress) {
 export function syncHistory(config) {
     // add new day to config if not yet done
     const history = config.get('history');
-    if (!history[0] || getDaysApart(history[0].date, TODAY) != 0) {
+    if (!history[0] || getDaysApart(history[0].date, TODAY()) != 0) {
         if (!history[0] || history[0].cups < config.get('goal')) {
             config.set('streak', 0);
         }
 
         const newEntry = {
             cups: 0,
-            date: TODAY.toISOString()
+            date: TODAY().toISOString()
         };
         config.set('history', [newEntry, ...history].slice(0, config.get('historyCount')));
     }
@@ -51,7 +51,7 @@ export function syncHistory(config) {
 }
 
 export function printMain(cfg) {
-    let datePointer = TODAY;
+    let datePointer = TODAY();
     const dateFmt = ' MMM DD ';
 
     const levelsToPrint = {}
@@ -61,7 +61,7 @@ export function printMain(cfg) {
     }
 
     for (let record of cfg.history) {
-        const offset = getDaysApart(record.date, TODAY);
+        const offset = getDaysApart(record.date, TODAY());
 
         if (offset > cfg.rows - 1) break;
         levelsToPrint[offset].cups = record.cups;
@@ -80,7 +80,7 @@ export function printLastDrink(lastDrink) {
         console.log(white(`Last drink: never`))
     } else {
         const d = dayjs(lastDrink)
-        if (getDaysApart(d, TODAY) == 0) {
+        if (getDaysApart(d, TODAY()) == 0) {
             console.log(white(`Last drink: ${d.format('h:mm:ss A')}`));
         } else {
             console.log(white(`Last drink: ${d.format('MMM DD')}`));
@@ -118,7 +118,7 @@ export function printEncouragement(cfg) {
 export function printStats(cfg) {
     let sum = 0;
     for (let record of cfg.history) {
-        if (getDaysApart(TODAY, record.when) < 7) {
+        if (getDaysApart(TODAY(), record.date) < 7) {
             sum += record.cups;
         }
     }
